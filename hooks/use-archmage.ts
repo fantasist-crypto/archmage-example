@@ -1,6 +1,17 @@
+import { isServer } from '~/utils'
+
 export function useArchmage() {
-  if (typeof window === 'undefined') {
-    return
+  const archmage = !isServer()
+    ? (window as any).archmage
+    : undefined
+
+  const connect = () => {}
+
+  const connectEvm = async () => {
+    await archmage?.evm.request({ method: 'eth_requestAccounts' })
   }
-  return (window as any).archmage
+
+  const connectCosm = () => {}
+
+  return { connect, connectEvm, connectCosm }
 }

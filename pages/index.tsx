@@ -1,11 +1,19 @@
-import { useConnect } from '../hooks/use-connect'
+import { useArchmage } from '~/hooks/use-archmage'
 
 export default function Home() {
-  const connect = useConnect()
+  const { connectEvm } = useArchmage()
+
+  const handleConnect = async () => {
+    try {
+      await connectEvm()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
-      <button onClick={connect}>Connect</button>
+      <button onClick={handleConnect}>Connect to EVM</button>
     </div>
   )
 }
