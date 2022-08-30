@@ -1,9 +1,7 @@
 import { isServer } from '~/utils'
 
 export function useArchmage() {
-  const archmage = !isServer()
-    ? (window as any).archmage
-    : undefined
+  const archmage = !isServer() ? (window as any).archmage : undefined
 
   const connect = () => {}
 
